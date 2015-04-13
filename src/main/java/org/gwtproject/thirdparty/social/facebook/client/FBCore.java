@@ -72,7 +72,7 @@ public class FBCore {
     }-*/;
 
     @Deprecated
-    private static native void listenFBEvent()/*-{
+    private native void listenFBEvent()/*-{
             $wnd.FB.Event.subscribe('auth.statusChange', function(response) {
               if (response.authResponse) {
                 // user has auth'd your app and is logged into Facebook
@@ -90,7 +90,7 @@ public class FBCore {
             });
     }-*/;
 
-    private static native void _login()/*-{
+    private native void _login()/*-{
                     $wnd.FB.login(function(response) {
                         if (response.authResponse) {
                                 $wnd.FB.api('/me', function(response) {
@@ -103,7 +103,7 @@ public class FBCore {
                     });
     }-*/;
 
-    public static native void logout()/*-{
+    public native void logout()/*-{
         $wnd.FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
                 $wnd.FB.logout(function(response) {
@@ -113,7 +113,7 @@ public class FBCore {
         })
     }-*/;
 
-    private static native void _init(String _appId)/*-{
+    private native void _init(String _appId)/*-{
         $wnd.FB.init({
             appId      : _appId,
             cookie     : true,  // enable cookies to allow the server to access
@@ -123,7 +123,7 @@ public class FBCore {
         });
     }-*/;
 
-    private static native void _init(String _appId, boolean _cookie, boolean _xfbml, String _version)/*-{
+    private native void _init(String _appId, boolean _cookie, boolean _xfbml, String _version)/*-{
         $wnd.FB.init({
             appId      : _appId,
             cookie     : _cookie,   // enable cookies to allow the server to access
