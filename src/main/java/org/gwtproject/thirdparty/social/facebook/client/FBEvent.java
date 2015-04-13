@@ -12,9 +12,9 @@ public class FBEvent {
         $wnd.FB.Event.unsubscribe(event, handleResponse);
         var handleResponse = function(response) {
                 if(response){
-                    @org.gwtproject.thirdparty.social.facebook.client.FBEvent::callbackSuccess(Lcom/google/gwt/user/client/rpc/AsyncCallback;Lcom/google/gwt/core/client/JavaScriptObject;)(callback, response);
+                    this.@org.gwtproject.thirdparty.social.facebook.client.FBEvent::callbackSuccess(Lcom/google/gwt/user/client/rpc/AsyncCallback;Lcom/google/gwt/core/client/JavaScriptObject;)(callback, response);
                 } else {
-                    @org.gwtproject.thirdparty.social.facebook.client.FBEvent::callbackFailure(Lcom/google/gwt/user/client/rpc/AsyncCallback;Lcom/google/gwt/core/client/JavaScriptObject;)(callback, response);
+                    this.@org.gwtproject.thirdparty.social.facebook.client.FBEvent::callbackFailure(Lcom/google/gwt/user/client/rpc/AsyncCallback;Lcom/google/gwt/core/client/JavaScriptObject;)(callback, response);
                 }
         };
     }-*/;
@@ -22,20 +22,20 @@ public class FBEvent {
     public native void subscribe(String event, AsyncCallback<JavaScriptObject> callback)/*-{
             $wnd.FB.Event.subscribe(event, function(response) {
                 if(response){
-                    @org.gwtproject.thirdparty.social.facebook.client.FBEvent::callbackSuccess(Lcom/google/gwt/user/client/rpc/AsyncCallback;Lcom/google/gwt/core/client/JavaScriptObject;)(callback, response);
+                    this.@org.gwtproject.thirdparty.social.facebook.client.FBEvent::callbackSuccess(Lcom/google/gwt/user/client/rpc/AsyncCallback;Lcom/google/gwt/core/client/JavaScriptObject;)(callback, response);
                 } else {
-                    @org.gwtproject.thirdparty.social.facebook.client.FBEvent::callbackFailure(Lcom/google/gwt/user/client/rpc/AsyncCallback;Lcom/google/gwt/core/client/JavaScriptObject;)(callback, response);
+                    this.@org.gwtproject.thirdparty.social.facebook.client.FBEvent::callbackFailure(Lcom/google/gwt/user/client/rpc/AsyncCallback;Lcom/google/gwt/core/client/JavaScriptObject;)(callback, response);
                 }
             });
     }-*/;
 
     @SuppressWarnings("unused")
-    protected void callbackSuccess(JavaScriptObject response, AsyncCallback<JavaScriptObject> callback){
+    protected void callbackSuccess(AsyncCallback<JavaScriptObject> callback, JavaScriptObject response){
         callback.onSuccess(response);
     }
 
     @SuppressWarnings("unused")
-    protected void callbackFailure(JavaScriptObject response, AsyncCallback<JavaScriptObject> callback){
+    protected void callbackFailure(AsyncCallback<JavaScriptObject> callback, JavaScriptObject response){
         String error = String.valueOf(response);
         callback.onFailure(new RuntimeException(error));
     }

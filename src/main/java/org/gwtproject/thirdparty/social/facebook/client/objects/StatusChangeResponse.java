@@ -6,6 +6,8 @@ public class StatusChangeResponse extends JavaScriptObject {
 
     public final static String NOT_AUTHORIZED = "not_authorized";
 
+    protected StatusChangeResponse(){}
+
     public final native String getAccessToken()/*-{
         return authResponse.accessToken;
     }-*/;

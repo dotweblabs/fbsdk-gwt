@@ -8,11 +8,11 @@ import org.gwtproject.thirdparty.social.facebook.client.callback.LoginCallback;
 public class FBCore {
 
     private static final String FACEBOOK_DOMAIN = "facebook";
-    private static String _appId;
-    private static boolean initialized = false;
-    private static String accessToken;
-    private static String signedRequest;
-    private static String userId;
+    private String _appId;
+    private boolean initialized = false;
+    private String accessToken;
+    private String signedRequest;
+    private String userId;
 
     private static LoginCallback loginCallback;
 
@@ -37,7 +37,7 @@ public class FBCore {
     }
 
     private void onConnected(String accessToken){
-        FBCore.accessToken = accessToken;
+        this.accessToken = accessToken;
         loginCallback.onLogin(accessToken);
     }
 
@@ -64,9 +64,9 @@ public class FBCore {
     public static native void api(String path, AsyncCallback callback)/*-{
             $wnd.FB.api(path, function(response){
                   if(response) {
-                    @org.gwtproject.thirdparty.social.facebook.client.FBCore::callbackSuccess(Lcom/google/gwt/user/client/rpc/AsyncCallback;Lcom/google/gwt/core/client/JavaScriptObject;)(callback, response);
+                    this.@org.gwtproject.thirdparty.social.facebook.client.FBCore::callbackSuccess(Lcom/google/gwt/user/client/rpc/AsyncCallback;Lcom/google/gwt/core/client/JavaScriptObject;)(callback, response);
                   } else {
-                    @org.gwtproject.thirdparty.social.facebook.client.FBCore::callbackFailure(Lcom/google/gwt/user/client/rpc/AsyncCallback;Lcom/google/gwt/core/client/JavaScriptObject;)(callback, response);
+                    this.@org.gwtproject.thirdparty.social.facebook.client.FBCore::callbackFailure(Lcom/google/gwt/user/client/rpc/AsyncCallback;Lcom/google/gwt/core/client/JavaScriptObject;)(callback, response);
                   }
             });
     }-*/;
@@ -77,15 +77,15 @@ public class FBCore {
               if (response.authResponse) {
                 // user has auth'd your app and is logged into Facebook
                 $wnd.FB.api('/me', function(me){
-                  @org.gwtproject.thirdparty.social.facebook.client.FBCore::userId = me.id;
-                  @org.gwtproject.thirdparty.social.facebook.client.FBCore::signedRequest = response.authResponse.signedRequest;
-                  @org.gwtproject.thirdparty.social.facebook.client.FBCore::onConnected(Ljava/lang/String;)(response.authResponse.accessToken);
+                  this.@org.gwtproject.thirdparty.social.facebook.client.FBCore::userId = me.id;
+                  this.@org.gwtproject.thirdparty.social.facebook.client.FBCore::signedRequest = response.authResponse.signedRequest;
+                  this.@org.gwtproject.thirdparty.social.facebook.client.FBCore::onConnected(Ljava/lang/String;)(response.authResponse.accessToken);
                 })
               } else if (response.status === 'not_authorized') {
-                @org.gwtproject.thirdparty.social.facebook.client.FBCore::onAuthorizationFailed()();
+                this.@org.gwtproject.thirdparty.social.facebook.client.FBCore::onAuthorizationFailed()();
               } else {
                 // user has not auth'd your app, or is not logged into Facebook
-                @org.gwtproject.thirdparty.social.facebook.client.FBCore::onNotLoggedIn()();
+                this.@org.gwtproject.thirdparty.social.facebook.client.FBCore::onNotLoggedIn()();
               }
             });
     }-*/;
@@ -94,11 +94,11 @@ public class FBCore {
                     $wnd.FB.login(function(response) {
                         if (response.authResponse) {
                                 $wnd.FB.api('/me', function(response) {
-                                    @org.gwtproject.thirdparty.social.facebook.client.FBCore::userId = response.id;
+                                    this.@org.gwtproject.thirdparty.social.facebook.client.FBCore::userId = response.id;
                                 });
                         } else {
                             //console.log('User cancelled login or did not fully authorize.');
-                            @org.gwtproject.thirdparty.social.facebook.client.FBCore::onAuthorizationFailed()();
+                            this.@org.gwtproject.thirdparty.social.facebook.client.FBCore::onAuthorizationFailed()();
                         }
                     });
     }-*/;
@@ -107,7 +107,7 @@ public class FBCore {
         $wnd.FB.getLoginStatus(function(response) {
             if (response.status === 'connected') {
                 $wnd.FB.logout(function(response) {
-                    @org.gwtproject.thirdparty.social.facebook.client.FBCore::onLogout()();
+                    this.@org.gwtproject.thirdparty.social.facebook.client.FBCore::onLogout()();
                 });
             }
         })
@@ -134,12 +134,12 @@ public class FBCore {
     }-*/;
 
     @SuppressWarnings("unused")
-    protected void callbackSuccess(JavaScriptObject response, AsyncCallback<JavaScriptObject> callback){
+    protected void callbackSuccess(AsyncCallback<JavaScriptObject> callback, JavaScriptObject response){
         callback.onSuccess(response);
     }
 
     @SuppressWarnings("unused")
-    protected void callbackFailure(JavaScriptObject response, AsyncCallback<JavaScriptObject> callback){
+    protected void callbackFailure(AsyncCallback<JavaScriptObject> callback, JavaScriptObject response){
         String error = String.valueOf(response);
         callback.onFailure(new RuntimeException(error));
     }
