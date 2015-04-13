@@ -12,9 +12,9 @@ public class FBEvent {
         $wnd.FB.Event.unsubscribe(event, handleResponse);
         var handleResponse = function(response) {
                 if(response){
-                    @org.gwtproject.social.facebook.client.FBEvent::callbackSuccess(Lcom/google/gwt/user/client/rpc/AsyncCallback;Lcom/google/gwt/core/client/JavaScriptObject;)(callback, response);
+                    @org.gwtproject.thirdparty.social.facebook.client.FBEvent::callbackSuccess(Lcom/google/gwt/user/client/rpc/AsyncCallback;Lcom/google/gwt/core/client/JavaScriptObject;)(callback, response);
                 } else {
-                    @org.gwtproject.social.facebook.client.FBEvent::callbackFailure(Lcom/google/gwt/user/client/rpc/AsyncCallback;Lcom/google/gwt/core/client/JavaScriptObject;)(callback, response);
+                    @org.gwtproject.thirdparty.social.facebook.client.FBEvent::callbackFailure(Lcom/google/gwt/user/client/rpc/AsyncCallback;Lcom/google/gwt/core/client/JavaScriptObject;)(callback, response);
                 }
         };
     }-*/;
@@ -22,9 +22,9 @@ public class FBEvent {
     public native void subscribe(String event, AsyncCallback<JavaScriptObject> callback)/*-{
             $wnd.FB.Event.subscribe(event, function(response) {
                 if(response){
-                    @org.gwtproject.social.facebook.client.FBEvent::callbackSuccess(Lcom/google/gwt/user/client/rpc/AsyncCallback;Lcom/google/gwt/core/client/JavaScriptObject;)(callback, response);
+                    @org.gwtproject.thirdparty.social.facebook.client.FBEvent::callbackSuccess(Lcom/google/gwt/user/client/rpc/AsyncCallback;Lcom/google/gwt/core/client/JavaScriptObject;)(callback, response);
                 } else {
-                    @org.gwtproject.social.facebook.client.FBEvent::callbackFailure(Lcom/google/gwt/user/client/rpc/AsyncCallback;Lcom/google/gwt/core/client/JavaScriptObject;)(callback, response);
+                    @org.gwtproject.thirdparty.social.facebook.client.FBEvent::callbackFailure(Lcom/google/gwt/user/client/rpc/AsyncCallback;Lcom/google/gwt/core/client/JavaScriptObject;)(callback, response);
                 }
             });
     }-*/;
