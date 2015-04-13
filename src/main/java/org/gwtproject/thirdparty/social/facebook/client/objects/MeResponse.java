@@ -6,7 +6,7 @@ public class MeResponse extends JavaScriptObject {
 
     protected MeResponse(){}
 
-    public native String getId()/*-{
+    public final native String getId()/*-{
         return id;
     }-*/;
 }
