@@ -3,8 +3,7 @@ package org.gwtproject.thirdparty.social.facebook;
 import com.google.gwt.core.client.JavaScriptObject;
 import com.google.gwt.junit.client.GWTTestCase;
 import com.google.gwt.user.client.rpc.AsyncCallback;
-import org.gwtproject.thirdparty.social.facebook.client.FBCore;
-import org.gwtproject.thirdparty.social.facebook.client.FBEvent;
+import org.gwtproject.thirdparty.social.facebook.client.FB;
 import org.gwtproject.thirdparty.social.facebook.client.callback.LoginCallback;
 import org.gwtproject.thirdparty.social.facebook.client.objects.MeResponse;
 import org.gwtproject.thirdparty.social.facebook.client.objects.StatusChangeResponse;
@@ -23,15 +22,13 @@ public class FBCoreTest extends GWTTestCase {
     }
 
     public void testFBCoreInit(){
-        FBCore fbCore = new FBCore();
-        fbCore.init(TEST_APP_ID);
+        FB.init(TEST_APP_ID);
     }
 
     public void testLogin(){
-        FBCore fbCore = new FBCore();
-        fbCore.init(TEST_APP_ID);
+        FB.init(TEST_APP_ID);
 
-        fbCore.login(new LoginCallback() {
+        FB.login(new LoginCallback() {
             @Override
             public void onLogin(String token) {
 
@@ -60,49 +57,46 @@ public class FBCoreTest extends GWTTestCase {
     }
 
     public void testLogout(){
-        FBCore fbCore = new FBCore();
-        fbCore.init(TEST_APP_ID);
-        fbCore.logout();
+        FB.init(TEST_APP_ID);
+        FB.logout();
     }
 
     public void testListenAuthStatusChange(){
-        FBEvent event = new FBEvent();
-        event.subscribe(FBEvent.AUTH_STATUS_CHANGE, new AsyncCallback<JavaScriptObject>() {
-            @Override
-            public void onFailure(Throwable throwable) {
-
-            }
-
-            @Override
-            public void onSuccess(JavaScriptObject response) {
-                if(response != null){
-                    StatusChangeResponse statusChangeResponse = (StatusChangeResponse) response;
-                    if(statusChangeResponse != null){
-                        String signedRequest = statusChangeResponse.getSignedRequest();
-                    } else if(statusChangeResponse.getStatus().equals(StatusChangeResponse.NOT_AUTHORIZED)){
-
-                    } else {
-
-                    }
-                }
-            }
-        });
+//        FBEvent event = new FBEvent();
+//        event.subscribe(FBEvent.AUTH_STATUS_CHANGE, new AsyncCallback<JavaScriptObject>() {
+//            @Override
+//            public void onFailure(Throwable throwable) {
+//
+//            }
+//
+//            @Override
+//            public void onSuccess(JavaScriptObject response) {
+//                if(response != null){
+//                    StatusChangeResponse statusChangeResponse = (StatusChangeResponse) response;
+//                    if(statusChangeResponse != null){
+//                        String signedRequest = statusChangeResponse.getSignedRequest();
+//                    } else if(statusChangeResponse.getStatus().equals(StatusChangeResponse.NOT_AUTHORIZED)){
+//
+//                    } else {
+//
+//                    }
+//                }
+//            }
+//        });
     }
 
     public void testMeApi(){
-        FBCore fbCore = new FBCore();
-        fbCore.init(TEST_APP_ID);
-
-        fbCore.api("/me", new AsyncCallback<MeResponse>(){
-            @Override
-            public void onFailure(Throwable throwable) {
-
-            }
-            @Override
-            public void onSuccess(MeResponse response) {
-                response.getId();
-            }
-        });
+//        FB.init(TEST_APP_ID);
+//        FB.api("/me", new AsyncCallback<MeResponse>(){
+//            @Override
+//            public void onFailure(Throwable throwable) {
+//
+//            }
+//            @Override
+//            public void onSuccess(MeResponse response) {
+//                response.getId();
+//            }
+//        });
     }
 
 }
